@@ -1,3 +1,7 @@
 export default function Page() {
-  return <h1>HELLO NEXT WORLD!!!</h1>;
+  return (
+    <div>
+      <h1>THE WILD OASIS HOTEL. WELCOME</h1>
+    </div>
+  );
 }
