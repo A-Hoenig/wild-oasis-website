@@ -2,6 +2,11 @@ import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
 
+// force dynamic route and prevent data cache
+// incremental static regeneration (ISR)
+// 0 = always dynamic, 3600 = update once per hour
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Cabins at",
 };
