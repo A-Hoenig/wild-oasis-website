@@ -1,10 +1,12 @@
 import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+import Filter from "../_components/Filter";
 
 // force dynamic route and prevent data cache
 // incremental static regeneration (ISR)
 // 0 = always dynamic, 3600 = update once per hour
+// no longer applies once filter comonent included (= dynamic)
 export const revalidate = 3600;
 
 export const metadata = {
@@ -30,7 +32,9 @@ export default function Page({ searchParams }) {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
-
+      <div className="flex justify-end mb-8">
+        <Filter />
+      </div>
       {/* await for async data */}
       <Suspense fallback={<Spinner />}>
         <CabinList filter={filter} />
