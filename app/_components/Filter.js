@@ -23,7 +23,7 @@ function Filter() {
         handleFilter={handleFilter}
         activeFilter={activeFilter}
       >
-        Clear Filter
+        Show All
       </Button>
       <Button
         filter={"small"}

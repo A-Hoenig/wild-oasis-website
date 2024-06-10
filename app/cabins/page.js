@@ -35,7 +35,7 @@ export default function Page({ searchParams }) {
       <div className="flex justify-end mb-8">
         <Filter />
       </div>
-      {/* await for async dat,a  key ensures loaders are rendered for unique components*/}
+      {/* await for async data,  key ensures loaders are rendered for unique components*/}
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
       </Suspense>
