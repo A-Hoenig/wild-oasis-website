@@ -11,7 +11,10 @@ export const metadata = {
   title: "Cabins at",
 };
 
-export default function Page() {
+export default function Page({ searchParams }) {
+  //get filter value from URL (set default to all)
+  const filter = searchParams?.capacity ?? "all";
+  console.log(filter);
   // CHANGE
 
   return (
@@ -30,7 +33,7 @@ export default function Page() {
 
       {/* await for async data */}
       <Suspense fallback={<Spinner />}>
-        <CabinList />
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
