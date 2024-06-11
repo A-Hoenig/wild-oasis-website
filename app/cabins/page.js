@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
 import Filter from "../_components/Filter";
+import ReservationReminder from "../_components/ReservationReminder";
 
 // force dynamic route and prevent data cache
 // incremental static regeneration (ISR)
@@ -38,6 +39,7 @@ export default function Page({ searchParams }) {
       {/* await for async data,  key ensures loaders are rendered for unique components*/}
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   );
