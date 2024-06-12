@@ -63,6 +63,7 @@ function UpdateProfileForm({ guest, children }) {
 }
 
 function Button() {
+  //component must be rendered inside a form to use useFromStatus()
   const { pending } = useFormStatus();
 
   return (
