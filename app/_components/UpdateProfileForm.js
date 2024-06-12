@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { updateGuest } from "../_lib/actions";
-import { useFormStatus } from "react-dom";
+import SubmitButton from "@/app/_components/SubmitButton";
 
 function UpdateProfileForm({ guest, children }) {
   const [count, setCount] = useState();
@@ -43,8 +43,9 @@ function UpdateProfileForm({ guest, children }) {
             className="h-5 rounded-sm"
           />
         </div>
+
+        {children}
       </div>
-      {children}
 
       <div className="space-y-2">
         <label htmlFor="nationalID">National ID number</label>
@@ -56,23 +57,9 @@ function UpdateProfileForm({ guest, children }) {
       </div>
 
       <div className="flex justify-end items-center gap-6">
-        <Button />
+        <SubmitButton pendingLabel="Updating...">Update profile</SubmitButton>
       </div>
     </form>
-  );
-}
-
-function Button() {
-  //component must be rendered inside a form to use useFromStatus()
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-      className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
-      disabled={pending}
-    >
-      {pending ? "Updating..." : "Update profile"}
-    </button>
   );
 }
 
