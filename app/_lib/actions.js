@@ -5,6 +5,7 @@ import { auth, signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 import { getBookings } from "./data-service";
 import { redirect } from "next/navigation";
+import { Clicker_Script } from "next/font/google";
 
 export async function updateGuest(formData) {
   const session = await auth();
@@ -26,9 +27,30 @@ export async function updateGuest(formData) {
   revalidatePath("/account/profile");
 }
 
-export async function deleteReservation(bookingId) {
+export async function createBooking(bookingData, formData) {
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+  const newBooking = {
+    ...bookingData,
+    guestId: session.user.guestId,
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+    extrasPrice: 0,
+    totalPrice: bookingData.cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "unconfirmed",
+  };
+
+  // still needs server side validation to prevent double booking
+  const { error } = await supabase.from("bookings").insert([newBooking]);
+
+  if (error) throw new Error("Booking could not be created");
+}
+
+export async function deleteBooking(bookingId) {
   //artificial delay for testing optimisitc UI updates
-  await new Promise((res) => setTimeout(res, 2000));
+  // await new Promise((res) => setTimeout(res, 2000));
 
   const session = await auth();
   if (!session) throw new Error("You must be logged in");

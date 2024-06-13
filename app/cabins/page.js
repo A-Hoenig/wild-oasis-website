@@ -17,8 +17,6 @@ export const metadata = {
 export default function Page({ searchParams }) {
   //get filter value from URL (set default to all)
   const filter = searchParams?.capacity ?? "all";
-  console.log(filter);
-  // CHANGE
 
   return (
     <div>
